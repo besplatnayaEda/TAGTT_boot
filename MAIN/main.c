@@ -31,13 +31,32 @@ static void process_mcps_input( MAC_McpsDcfmInd_s *buf );
 // Entry point for application from boot loader. Initialises system and runs
 // main loop
 bint led_blink_counter;
+
 //---------------------------------------------------------------------------
+
+
+//---------------------------------------------------------------------------
+//	bootloader
+//---------------------------------------------------------------------------
+
+// проверка наличия прошивки
+int CheckFWPresent(void);
+
+
+
+// проверка наличия прошивки
+int FWPresent;
+
+
+//---------------------------------------------------------------------------
+
 void AppColdStart(void)
 {
     // Disable watchdog if enabled by default
     vAHI_WatchdogStop();
 
     init_tag_system();
+
 
 	if( cfg.airid.id )
 	{	// Канал выделен жестко - срвзу стартуем
@@ -49,6 +68,8 @@ void AppColdStart(void)
 	}
 
 	vAHI_WatchdogStart( 9 );  	// 4096ms
+
+
 
     for( ; ; )
 	{
@@ -320,3 +341,26 @@ void hello_message(void)
 						__DATE__, __TIME__ );
 }
 
+
+//---------------------------------------------------------------------------
+//	функции для бутлодера
+//---------------------------------------------------------------------------
+
+
+int CheckFWPresent(void)	// проверка наличия прошивки
+{
+  // если прошивка на месте (первые 4 байт), то продолжаем проверки
+  if (*(__IO uint32_t *)FIRMWARE_ADDRESS != FIRMWARE_EMPTY) {
+    // если CRC и длина у прошивки отсутствуют, то считаем, что прошивка была залита через программатор
+    if ((*(__IO uint32_t *)(FIRMWARE_ADDRESS + FIRMWARE_CRC_OFFSET) == FIRMWARE_EMPTY) &&
+        (*(__IO uint32_t *)(FIRMWARE_ADDRESS + FIRMWARE_SIZE_OFFSET) == FIRMWARE_EMPTY)) {
+      return 1;
+    } else {
+      // если CRC правильная
+      if (CheckCRC())
+        return 1;
+    }
+  }
+  // прошивка отсутствует
+  return 0;
+}

@@ -105,6 +105,34 @@ extern "C" {
 #define TOF_REQUESTS_NNN       (8)
 
 
+// адрес загрузчика
+#define BOOT_ADDRESS 0x00080000				// JN-AN-1003	sheet 22
+#define BOOT_SIZE 0x00008000				// размер загрузчика пускай будет одну секцию 32 кб
+// адрес прошивки
+#define FIRMWARE_ADDRESS (BOOT_ADDRESS + BOOT_SIZE)
+
+// начало и размер пользовательских полей в загрузчике
+#define BOOT_USER_FIELDS_OFFSET 0x01AC
+#define BOOT_USER_FIELDS_SIZE 4
+// смещения адресов (относительно начала загрузчика) версии загрузчика
+#define BOOT_VERSION_OFFSET BOOT_USER_FIELDS_OFFSET
+
+// сигнатура в RAM
+#define RAM_SIGNATURE 0xAA551122				// произвольная, для определения необходимости
+#define RAM_SIGNATURE_ADDRESS 0x2002FFFC
+// значение, когда прошивки нет
+#define FIRMWARE_EMPTY 0xFFFFFFFF
+// начало и размер пользовательских полей в прошивке
+#define FIRMWARE_USER_FIELDS_OFFSET 0x01AC
+#define FIRMWARE_USER_FIELDS_SIZE 12
+// смещения адресов (относительно начала прошивки) длины прошивки и CRC
+#define FIRMWARE_SIZE_OFFSET FIRMWARE_USER_FIELDS_OFFSET
+#define FIRMWARE_CRC_OFFSET (FIRMWARE_USER_FIELDS_OFFSET + 4)
+#define FIRMWARE_VERSION_OFFSET (FIRMWARE_USER_FIELDS_OFFSET + 8)
+// размер флеша
+#define INT_FLASH_END 0x000C0000
+#define FLASH_SIZE (INT_FLASH_END - BOOT_ADDRESS)		// вычисляем размер флеша
+
 
 #if defined __cplusplus
 }

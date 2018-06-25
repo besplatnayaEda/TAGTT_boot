@@ -80,7 +80,7 @@ int opsize;
 
 
 //-------------------------------------
-case 'rlev':
+case 'rlev':										// уровень сигнала
 
 		{
 		    vJPT_RadioDeInit();
@@ -102,7 +102,7 @@ case 'rlev':
 
 
 //-------------------------------------
-case 'bif ':
+case 'bif ':							// список маяков
 		bif_list();
 		break;
 
