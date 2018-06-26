@@ -66,7 +66,7 @@ void dle_key( bint key )
 //---------------------------------------------------------------------------
 //
 //---------------------------------------------------------------------------
-int commands( struct cmd_s *cmd )
+int commands( struct cmd_s *cmd )			// убрать лишние команды
 {
 int i;
 int opsize;
@@ -75,7 +75,7 @@ int opsize;
 	{
 
 //-------------------------------------
-#include "xall_commands.c"
+//#include "xall_commands.c"
 //-------------------------------------
 
 
@@ -102,11 +102,27 @@ case 'rlev':										// уровень сигнала
 
 
 //-------------------------------------
-case 'bif ':							// список маяков
+case 'bif ':							// список маяков?
 		bif_list();
 		break;
 
 
+//--- Bootloader ------------------------
+#if (DEV_TAGXX == 10)
+// --- стереть память
+	case 'cf  ':
+		bAHI_FlashEraseSector(4);
+		bAHI_FlashEraseSector(5);
+		bAHI_FlashEraseSector(6);
+		bAHI_FlashEraseSector(7);
+		bAHI_FlashEraseSector(8);
+		break;
+// --- загрузить прошивку
+	case 'ghex':
+		hex_loader();
+		break;
+
+#endif
 //--- Not Foud -----------------------
 default:
 cmd_error:

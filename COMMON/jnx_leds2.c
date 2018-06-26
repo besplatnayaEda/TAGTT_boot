@@ -96,6 +96,12 @@ ulong curtemp = (ldat.stat >> ((counter & 0x07 )<<2));
 		pin_do_lo( BIT_LED_DO_RED );
 	if( curstat & BIT_LED_GREEN )
 		pin_lo( BIT_LED_GREEN );
+#elif( DEV_TAGXX == 10 )
+	if( curstat )
+		pin_hi( curstat );
+	curstat = (~curstat)&(BIT_LED_RED);
+	if( curstat )
+		pin_lo( curstat );
 #else
 #error "No Led Type"
 #endif

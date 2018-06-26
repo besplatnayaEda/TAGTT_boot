@@ -123,11 +123,14 @@
 		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.debug.3450912;cdt.managedbuild.config.gnu.mingw.exe.debug.3450912.;cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.debug.1672027408;cdt.managedbuild.tool.gnu.c.compiler.input.113782843">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
 		</scannerConfigBuildInfo>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.release.713768492;cdt.managedbuild.config.gnu.mingw.exe.release.713768492.;cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.release.957496856;cdt.managedbuild.tool.gnu.c.compiler.input.1450150478">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		</scannerConfigBuildInfo>
 		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.debug.3450912;cdt.managedbuild.config.gnu.mingw.exe.debug.3450912.;com.beyondsemi.tool.gnu.ba.elf.compiler.c.base.1214904253;com.beyondsemi.base.ba.elf.c.compiler.input.562414654">
 			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.beyondsemi.base.elf.c.scanner.configdiscovery"/>
 		</scannerConfigBuildInfo>
-		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.release.713768492;cdt.managedbuild.config.gnu.mingw.exe.release.713768492.;cdt.managedbuild.tool.gnu.c.compiler.mingw.exe.release.957496856;cdt.managedbuild.tool.gnu.c.compiler.input.1450150478">
-			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId=""/>
+		<scannerConfigBuildInfo instanceId="cdt.managedbuild.config.gnu.mingw.exe.debug.3450912;cdt.managedbuild.config.gnu.mingw.exe.debug.3450912.;com.beyondsemi.tool.gnu.ba.elf.compiler.c.base.475903679;com.beyondsemi.base.ba.elf.c.compiler.input.1631599673">
+			<autodiscovery enabled="true" problemReportingEnabled="true" selectedProfileId="com.beyondsemi.base.elf.c.scanner.configdiscovery"/>
 		</scannerConfigBuildInfo>
 	</storageModule>
 </cproject>

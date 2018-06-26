@@ -18,15 +18,16 @@ extern "C" {
 // TAGXX = 7	SPT24->IPT24_GAS
 // TAGXX = 8	TESTER ATEST
 // TAGXX = 9	TOF Tester
+// TAGXX = 10	таг-bootloader
 
-#define DEV_TAGXX           (9)
+#define DEV_TAGXX           (10)
 #define USE_DEBUG_GLOBAL	(0)
 #define USE_ZONE_MODE 		(0)
 
 //---------------------------------------------------------------------------
 
 #define SYSVERSION 			0
-#define SUBVERSION	    	1
+#define SUBVERSION	    	0
 
 #define TIMER_FR_INT_PRIORITY 			(1)
 #define UART_DATA_INT_PRIORITY 			(2)
@@ -107,23 +108,23 @@ extern "C" {
 
 // адрес загрузчика
 #define BOOT_ADDRESS 0x00080000				// JN-AN-1003	sheet 22
-#define BOOT_SIZE 0x00008000				// размер загрузчика пускай будет одну секцию 32 кб
+#define BOOT_SIZE 0x00018000				// размер загрузчика пускай будет три секции 96 кб (надо урезать прошивку)
 // адрес прошивки
 #define FIRMWARE_ADDRESS (BOOT_ADDRESS + BOOT_SIZE)
 
 // начало и размер пользовательских полей в загрузчике
-#define BOOT_USER_FIELDS_OFFSET 0x01AC
+#define BOOT_USER_FIELDS_OFFSET 0x01AC			// ???
 #define BOOT_USER_FIELDS_SIZE 4
 // смещения адресов (относительно начала загрузчика) версии загрузчика
 #define BOOT_VERSION_OFFSET BOOT_USER_FIELDS_OFFSET
 
 // сигнатура в RAM
 #define RAM_SIGNATURE 0xAA551122				// произвольная, для определения необходимости
-#define RAM_SIGNATURE_ADDRESS 0x2002FFFC
+#define RAM_SIGNATURE_ADDRESS 0x04002FFC			// ???
 // значение, когда прошивки нет
 #define FIRMWARE_EMPTY 0xFFFFFFFF
 // начало и размер пользовательских полей в прошивке
-#define FIRMWARE_USER_FIELDS_OFFSET 0x01AC
+#define FIRMWARE_USER_FIELDS_OFFSET 0x01AC			// ???
 #define FIRMWARE_USER_FIELDS_SIZE 12
 // смещения адресов (относительно начала прошивки) длины прошивки и CRC
 #define FIRMWARE_SIZE_OFFSET FIRMWARE_USER_FIELDS_OFFSET
@@ -132,6 +133,17 @@ extern "C" {
 // размер флеша
 #define INT_FLASH_END 0x000C0000
 #define FLASH_SIZE (INT_FLASH_END - BOOT_ADDRESS)		// вычисляем размер флеша
+
+#define CRC_INIT_RESET 0xFFFFFFFF		// начальное значение crc
+#define VECTOR_TABLE 0x00080038			// таблица векторов
+#define	RAM_END 0x04008000				// окончание RAM
+#define STACK_SIZE 0x00000800			// размер стека
+#define	STACK_ADRESS ( RAM_END - STACK_SIZE)		// адрес стека
+
+#define FRAME_ACK  0x06  // ACK
+#define FRAME_NAK   0x15        // Negative ACK
+#define FRAME_COMPLETE 0x05        // ENQ =
+#define FRAME_CAN   0x18        // CANcel
 
 
 #if defined __cplusplus
