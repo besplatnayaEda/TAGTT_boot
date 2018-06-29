@@ -80,7 +80,8 @@
 #define	STW_BER_REQUEST		BIT3
 #define	STW_AIRX_REQUEST	BIT2
 #define	STW_UCNT_REQUEST	BIT1
-#define	STW_ADC				BIT0
+//#define	STW_ADC				BIT0
+#define	STW_HEX_LOADER		BIT0
 
 //---------------------------------------------------------------------------
 typedef enum

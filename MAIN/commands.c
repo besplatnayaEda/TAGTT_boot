@@ -80,7 +80,7 @@ int opsize;
 
 
 //-------------------------------------
-case 'rlev':										// уровень сигнала
+/*case 'rlev':										// уровень сигнала
 
 		{
 		    vJPT_RadioDeInit();
@@ -99,27 +99,27 @@ case 'rlev':										// уровень сигнала
 		}
 
 		break;
-
+*/
 
 //-------------------------------------
-case 'bif ':							// список маяков?
+/*case 'bif ':							// список маяков?
 		bif_list();
 		break;
-
+*/
 
 //--- Bootloader ------------------------
 #if (DEV_TAGXX == 10)
 // --- стереть память
 	case 'cf  ':
-		bAHI_FlashEraseSector(4);
+		bAHI_FlashEraseSector(4);		// очистим секторы с прошивкой, т.е. все остальные
 		bAHI_FlashEraseSector(5);
 		bAHI_FlashEraseSector(6);
 		bAHI_FlashEraseSector(7);
 		bAHI_FlashEraseSector(8);
 		break;
-// --- загрузить прошивку
-	case 'ghex':
-		hex_loader();
+// --- перезагрузка
+	case 'res ':
+		reset( 0 );
 		break;
 
 #endif

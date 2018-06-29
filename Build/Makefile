@@ -149,6 +149,25 @@ APPLIBS += TOF
 # Specify additional Component libraries
 LDLIBS += JPT_${JENNIC_CHIP}
 
+# Define a default APP_ID from BootLoader app = 0
+APP_ID ?= 0
+
+# Define the _application_id for the correct value when linking
+LDFLAGS += -Wl,--defsym,_application_id=$(APP_ID)
+
+#Define the vLoadBootImage function call in the Bootloader
+ifeq ($(JENNIC_CHIP),JN5168)
+LDFLAGS += -Wl,--defsym,vLoadBootImage=0x000009e3
+endif
+ifeq ($(JENNIC_CHIP),JN5164)
+LDFLAGS += -Wl,--defsym,vLoadBootImage=0x000009e3
+endif
+ifeq ($(JENNIC_CHIP),JN5161)
+LDFLAGS += -Wl,--defsym,vLoadBootImage=0x000009e3
+endif
+ifeq ($(JENNIC_CHIP),JN5169)
+LDFLAGS += -Wl,--defsym,vLoadBootImage=0x00001a76
+endif
 
 #----------------------------------------------------------------------------
 # Configure for the selected chip or chip family

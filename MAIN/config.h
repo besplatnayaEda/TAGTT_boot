@@ -120,7 +120,7 @@ extern "C" {
 
 // сигнатура в RAM
 #define RAM_SIGNATURE 0xAA551122				// произвольная, для определения необходимости
-#define RAM_SIGNATURE_ADDRESS 0x04002FFC			// ???
+#define RAM_SIGNATURE_ADDRESS 0x200077FC			// ???
 // значение, когда прошивки нет
 #define FIRMWARE_EMPTY 0xFFFFFFFF
 // начало и размер пользовательских полей в прошивке
@@ -140,10 +140,15 @@ extern "C" {
 #define STACK_SIZE 0x00000800			// размер стека
 #define	STACK_ADRESS ( RAM_END - STACK_SIZE)		// адрес стека
 
-#define FRAME_ACK  0x06  // ACK
-#define FRAME_NAK   0x15        // Negative ACK
-#define FRAME_COMPLETE 0x05        // ENQ =
-#define FRAME_CAN   0x18        // CANcel
+#define FRAME_ACK  		0x06  		// ACK
+#define FRAME_NAK   	0x15        // Negative ACK
+#define FRAME_DLE		0x10		// DLE
+#define FRAME_COMPLETE 	0x05        // ENQ =
+#define FRAME_CAN   	0x18        // CANcel
+
+#define PAGE_SIZE		0x00000800		// 2 кБ
+#define	FRAME_BUFFER_SIZE	512
+
 
 
 #if defined __cplusplus

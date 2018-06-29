@@ -370,7 +370,8 @@ BYTE ch;
 			}
 			else
 			{
-
+			if( !sw_chk( STW_HEX_LOADER ) )
+			{
 			switch( ch )
 			{
 
@@ -427,7 +428,16 @@ BYTE ch;
 				sw_set( STW_DLE_KEY );
 				break;
 #endif
-
+#if DEV_TAGXX == 10
+			case 'H':
+				if( sw_chk( STW_DLE_KEY ) )
+				{
+					print_byte( ACK );
+					sw_set( STW_HEX_LOADER );
+					//hex_loader();
+				}
+				break;
+#endif
 			case ESC:
 				sw_set( STW_ESC_KEY );
 				break;
@@ -449,7 +459,13 @@ BYTE ch;
 					}
 				}
 
+			}	//	switch( ch )
+			}	// 	if( sw_chk( STW_HEX_LOADER ) )
+			else
+			{
+				hex_loader();
 			}
+
 			}
         }
 
